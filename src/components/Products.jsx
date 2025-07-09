@@ -11,7 +11,7 @@ const Products = () => {
       image: "https://placehold.co/600x400",
       description:
         "Experience the latest in mobile technology with advanced cameras, powerful processing, and an all-day battery.",
-      quantity: 0,
+      quantity: 1,
       price: 1450.0,
       discount: 10.0,
       specialPrice: 1305.0,
@@ -35,8 +35,11 @@ const Products = () => {
         <p>It is Loading....</p>
       ) : errorMessage ? (
         <div className="flex justify-center items-center h-[200px]">
-          <FaExclamationTriangle className="text-slate-800 text-3xl mr-2 "/>
-          <span className="text-slate-800 text-lg font-medium"> {errorMessage}</span>
+          <FaExclamationTriangle className="text-slate-800 text-3xl mr-2 " />
+          <span className="text-slate-800 text-lg font-medium">
+            {" "}
+            {errorMessage}
+          </span>
         </div>
       ) : (
         <div className="min-h-[700px]">
