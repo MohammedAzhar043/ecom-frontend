@@ -32,15 +32,12 @@ const Products = () => {
   //   },
   // ];
 
-  const { products } = useSelector((state) => {
-    state.products;
-  });
+  const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
 
   return (
     <div className="lg:px-14 sm:px-8 px-4 py-14 2xl:w-[90%] 2xl:mx-auto">
