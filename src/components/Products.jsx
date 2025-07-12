@@ -4,26 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../store/action";
 import Filter from "./Filter";
+import useProductFilter from "./useProductFilter";
 
 const Products = () => {
-  
-  const {isLoading,errorMessage} = useSelector(
-    (state) => state.errors
-  );
+  const { isLoading, errorMessage } = useSelector((state) => state.errors);
   // const isLoading = false;
   // const errorMessage = "";
-  
 
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  useProductFilter();
+
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, [dispatch]);
 
   return (
     <div className="lg:px-14 sm:px-8 px-4 py-14 2xl:w-[90%] 2xl:mx-auto">
-      
       <Filter />
       {isLoading ? (
         <p>It is Loading....</p>

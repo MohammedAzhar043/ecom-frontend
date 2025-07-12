@@ -1,4 +1,5 @@
-import { MenuItem } from "@headlessui/react";
+import { MenuItem } from "@mui/material";
+
 import {
   Button,
   FormControl,
@@ -106,7 +107,7 @@ const Filter = () => {
           type="text"
           placeholder="search product"
           value={searchTerm}
-          onChange={(e)=> setSearchTerm(e.target.value)}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="border border-gray-400 text-slate-800 rounded-md py-2 pl-10 pr-4 w-full focus:outline-none focus:ring-2 focus:ring-[#1976d2]"
         />
         <FiSearch className="absolute left-3 text-slate-800 size={20}" />
