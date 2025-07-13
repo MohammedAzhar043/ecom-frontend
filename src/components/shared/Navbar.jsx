@@ -56,17 +56,29 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li className="font-[500] transition-all duration-150">
+          <li className="font-medium transition-all duration-150">
             <Link
               className={`${
                 path === "/contact"
                   ? "text-white font-semibold"
                   : "text-gray-200"
               }`}
+              to="/contact"
+            >
+              Contact
+            </Link>
+          </li>
+
+          <li className="font-medium transition-all duration-150">
+            <Link
+              className={`${
+                path === "/cart" ? "text-white font-semibold" : "text-gray-200"
+              }`}
               to="/cart"
             >
               <Badge
                 showZero
+                // badgeContent={cart?.length || 0}
                 badgeContent={0}
                 color="primary"
                 overlap="circular"
@@ -80,7 +92,7 @@ const Navbar = () => {
           <li className="font-[500] transition-all duration-150">
             <Link
               className="flex items-center space-x-2 px-4 py-[6px] bg-gradient-to-r from-purple-600 to-red-500 text-white font-semibold rounded-md shadow-lg hover:from-purple-500 hover:to-red-400 transition duration-300 ease-in-out transform"
-              to="/logi"
+              to="/login"
             >
               <FaSignInAlt />
               <span>Login</span>
