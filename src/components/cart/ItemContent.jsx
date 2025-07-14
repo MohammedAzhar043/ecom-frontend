@@ -2,7 +2,7 @@ import { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import SetQuantity from "./SetQuantity";
 import { useDispatch } from "react-redux";
-import { increaseCartQuantity } from "../../store/action";
+import { decreaseCartQuantity, increaseCartQuantity } from "../../store/action";
 import toast from "react-hot-toast";
 const ItemContent = ({
   productId,
@@ -19,7 +19,18 @@ const ItemContent = ({
 
   const dispatch = useDispatch();
 
-  const handelQtyIncrease = (cartItems) => {
+  // const handelQtyIncrease = (cartItems) => {
+  //   dispatch(
+  //     increaseCartQuantity(
+  //       cartItems,
+  //       toast,
+  //       currentQuantity,
+  //       setCurrentQuantity
+  //     )
+  //   );
+  // };
+
+  const handleQtyIncrease = (cartItems) => {
     dispatch(
       increaseCartQuantity(
         cartItems,
@@ -28,6 +39,22 @@ const ItemContent = ({
         setCurrentQuantity
       )
     );
+  };
+
+  // const handelQtyDecrease = (cartItems) => {
+  //   if (currentQuantity > 1) {
+  //     const newQuantity = currentQuantity - 1;
+  //     setCurrentQuantity(newQuantity);
+  //     dispatch(decreaseCartQuantity(cartItems, newQuantity));
+  //   }
+  // };
+
+  const handleQtyDecrease = (cartItems) => {
+    if (currentQuantity > 1) {
+      const newQuantity = currentQuantity - 1;
+      setCurrentQuantity(newQuantity);
+      dispatch(decreaseCartQuantity(cartItems, newQuantity));
+    }
   };
   return (
     <div className="grid md:grid-cols-5 grid-cols-4 md:text-md text-sm gap-4   items-center  border border-slate-200  rounded-md  lg:px-4  py-4 p-2">
@@ -63,17 +90,27 @@ const ItemContent = ({
           quantity={currentQuantity}
           cardCounter={true}
           handelQtyIncrease={() =>
-            handelQtyIncrease({
-              productId,
-              productName,
+            handleQtyIncrease({
               image,
+              productName,
               description,
-              quantity,
-              price,
               specialPrice,
+              price,
+              productId,
+              quantity,
             })
           }
-          handelQtyDecrease={() => {}}
+          handelQtyDecrease={() => {
+            handleQtyDecrease({
+              image,
+              productName,
+              description,
+              specialPrice,
+              price,
+              productId,
+              quantity,
+            });
+          }}
         />
       </div>
 
