@@ -5,20 +5,25 @@ import Home from "./components/home/home";
 import Navbar from "./components/shared/Navbar";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import { Toaster } from "react-hot-toast";
+import React from "react";
 
 function App() {
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/about" element={<About />} />
+      <React.Fragment>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/about" element={<About />} />
             {/* <Route path='/cart' element={ <Cart />}/> */}
             <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Router>
+          </Routes>
+        </Router>
+        <Toaster position="bottom-center" />
+      </React.Fragment>
     </>
   );
 }

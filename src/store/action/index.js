@@ -1,5 +1,6 @@
 import api from "../../api/api";
 
+
 export const fetchProducts = (queryString) => async (dispatch) => {
   try {
     dispatch({ type: "IS_FETCHING" });
@@ -23,7 +24,6 @@ export const fetchProducts = (queryString) => async (dispatch) => {
   }
 };
 
-
 export const fetchCategories = (queryString) => async (dispatch) => {
   try {
     dispatch({ type: "CATEGORY_LOADER" });
@@ -46,3 +46,29 @@ export const fetchCategories = (queryString) => async (dispatch) => {
     });
   }
 };
+
+export const addToCart =
+  (data, qty = 1,toast) =>
+  (dispatch, getState) => {
+    //find the product
+   
+    const { products } = getState().products;
+    const getProduct = products.find(
+      (item) => item.productId === data.productId
+    );
+    //check for stocks
+
+    const isQuantityExist = getProduct.quantity >= qty;
+    // if in stock -add
+
+    if (isQuantityExist) {
+      dispatch({ type: "ADD_CART", payload: { ...data, quantity: qty } });
+      toast.success(`${data?.productName} added to the cart`);
+      localStorage.setItem("cartItems", JSON.stringify(getState().carts.cart));
+    }else{
+      // if not --> error
+       toast.error("out of stock");
+      
+    }
+
+  };
