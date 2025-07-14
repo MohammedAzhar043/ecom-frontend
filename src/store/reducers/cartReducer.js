@@ -24,17 +24,22 @@ export const createReducer = (state = initialState, action) => {
           ...state,
           cart: updatedCart,
         };
-      }
-      else{
-        const newCart = [...state.cart,productToAdd];
-         return {
+      } else {
+        const newCart = [...state.cart, productToAdd];
+        return {
           ...state,
           cart: newCart,
         };
       }
+    case "REMOVE_CART":
+      return {
+        ...state,
+        cart: state.cart.filter(
+          (item) => item.productId !== action.payload.productId
+        ),
+      };
 
     default:
-       return state;
+      return state;
   }
- 
 };

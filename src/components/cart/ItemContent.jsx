@@ -2,7 +2,11 @@ import { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import SetQuantity from "./SetQuantity";
 import { useDispatch } from "react-redux";
-import { decreaseCartQuantity, increaseCartQuantity } from "../../store/action";
+import {
+  decreaseCartQuantity,
+  increaseCartQuantity,
+  removeFromCart,
+} from "../../store/action";
 import toast from "react-hot-toast";
 const ItemContent = ({
   productId,
@@ -19,17 +23,6 @@ const ItemContent = ({
 
   const dispatch = useDispatch();
 
-  // const handelQtyIncrease = (cartItems) => {
-  //   dispatch(
-  //     increaseCartQuantity(
-  //       cartItems,
-  //       toast,
-  //       currentQuantity,
-  //       setCurrentQuantity
-  //     )
-  //   );
-  // };
-
   const handleQtyIncrease = (cartItems) => {
     dispatch(
       increaseCartQuantity(
@@ -41,20 +34,16 @@ const ItemContent = ({
     );
   };
 
-  // const handelQtyDecrease = (cartItems) => {
-  //   if (currentQuantity > 1) {
-  //     const newQuantity = currentQuantity - 1;
-  //     setCurrentQuantity(newQuantity);
-  //     dispatch(decreaseCartQuantity(cartItems, newQuantity));
-  //   }
-  // };
-
   const handleQtyDecrease = (cartItems) => {
     if (currentQuantity > 1) {
       const newQuantity = currentQuantity - 1;
       setCurrentQuantity(newQuantity);
       dispatch(decreaseCartQuantity(cartItems, newQuantity));
     }
+  };
+
+  const removeItemFromCart = (cartItems) => {
+    dispatch(removeFromCart(cartItems, toast));
   };
   return (
     <div className="grid md:grid-cols-5 grid-cols-4 md:text-md text-sm gap-4   items-center  border border-slate-200  rounded-md  lg:px-4  py-4 p-2">
@@ -73,7 +62,17 @@ const ItemContent = ({
 
           <div className="flex items-start gap-5 mt-3">
             <button
-              onClick={() => {}}
+              onClick={() =>
+                removeItemFromCart({
+                  image,
+                  productName,
+                  description,
+                  specialPrice,
+                  price,
+                  productId,
+                  quantity,
+                })
+              }
               className="flex items-center font-semibold space-x-2 px-4 py-1 text-xs border border-rose-600 text-rose-600 rounded-md hover:bg-red-50 transition-colors duration-200"
             >
               <HiOutlineTrash size={16} className="text-rose-600" /> Remove
