@@ -7,6 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import { Toaster } from "react-hot-toast";
 import React from "react";
+import Cart from "./components/cart/Cart";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/about" element={<About />} />
-            {/* <Route path='/cart' element={ <Cart />}/> */}
+            <Route path='/cart' element={ <Cart />}/>
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </Router>
