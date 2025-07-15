@@ -43,7 +43,7 @@ const Register = () => {
 
         <div className="flex flex-col gap-3">
           <InputField
-            lable="UserName"
+            lable="User Name"
             required
             id="username"
             type="text"
