@@ -41,7 +41,7 @@ const Login = () => {
 
         <div className="flex flex-col gap-3">
           <InputField
-            lable="userName"
+            lable="User Name"
             required
             id="username"
             type="text"

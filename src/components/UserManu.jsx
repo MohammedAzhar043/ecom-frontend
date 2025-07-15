@@ -1,15 +1,18 @@
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { BiUser } from "react-icons/bi";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoExitOutline } from "react-icons/io5";
 import BackDrop from "./BackDrop";
+import { logOutUser } from "../store/action";
 
 const UserManu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -17,7 +20,9 @@ const UserManu = () => {
     setAnchorEl(null);
   };
 
-  const logoutHandler = () => {};
+  const logoutHandler = () => {
+    dispatch(logOutUser(navigate));
+  };
 
   const { user } = useSelector((state) => state.auth);
   return (
