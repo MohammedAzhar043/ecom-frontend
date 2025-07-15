@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import InputField from "../shared/InputField";
 import { registerNewUser } from "../../store/action";
 import toast from "react-hot-toast";
+import Spinners from "../shared/Spinners";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ const Register = () => {
           className="bg-button-gradient flex gap-2 items-center justify-center font-semibold text-white w-full py-2 hover:text-slate-400 transition-colors duration-100 rounded-sm my-3"
           type="submit"
         >
-          {loader ? <> Loading...</> : <> Register</>}
+          {loader ? <> <Spinners /> Loading...</> : <> Register</>}
         </button>
         <p className="text-center text-sm text-slate-700 mt-6 ">
           Already have an account?
