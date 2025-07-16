@@ -162,17 +162,17 @@ export const logOutUser = (navigate) => (dispatch) => {
 export const addUpdateUserAddress =
   (sendData, toast, addressId, setOpenAddressModal) =>
   async (dispatch, getState) => {
-    const { user } = getState().auth;
+    // const { user } = getState().auth;
     dispatch({ type: "BUTTON_LOADER" });
     try {
       const { data } = await api.post("/addresses", sendData);
       toast.success("Address saved Successfully");
+      dispatch({ type: "IS_SUCCESS" });
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message || "Internal Server Error");
       dispatch({ type: "IS_ERROR", payload: null });
-    }
-    finally{
+    } finally {
       setOpenAddressModal(false);
     }
   };

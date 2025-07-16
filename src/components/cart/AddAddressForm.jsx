@@ -45,7 +45,7 @@ const AddAddressForm = ({address,setOpenAddressModal}) => {
           <InputField
             lable="Building Name"
             required
-            id="building"
+            id="buildingName"
             type="text"
             message="*Building name is required"
             placeholder="Enter Building Name"
