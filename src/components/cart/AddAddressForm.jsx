@@ -2,12 +2,16 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FaAddressCard } from "react-icons/fa";
 import InputField from "../shared/InputField";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Spinners from "../shared/Spinners";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { addUpdateUserAddress } from "../../store/action";
 
-const AddAddressForm = () => {
+const AddAddressForm = ({address,setOpenAddressModal}) => {
   const { btnLoader } = useSelector((state) => state.errors);
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -19,7 +23,13 @@ const AddAddressForm = () => {
   });
 
   const onSaveAddressHandler = async (data) => {
-    console.log("login click ");
+    dispatch(addUpdateUserAddress(
+      data,
+      toast,
+      address?.addressId,
+      setOpenAddressModal
+      
+    ))
   };
   return (
     <div className="">
