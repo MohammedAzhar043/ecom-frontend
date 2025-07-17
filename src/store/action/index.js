@@ -165,7 +165,12 @@ export const addUpdateUserAddress =
     // const { user } = getState().auth;
     dispatch({ type: "BUTTON_LOADER" });
     try {
-      const { data } = await api.post("/addresses", sendData);
+      if (!addressId) {
+        const { data } = await api.post("/addresses", sendData);
+      } else {
+        await api.put(`/addresses/${addressId}`, sendData);
+      }
+      dispatch(getUserAddresses());
       toast.success("Address saved Successfully");
       dispatch({ type: "IS_SUCCESS" });
     } catch (error) {
@@ -198,12 +203,11 @@ export const getUserAddresses = () => async (dispatch, getState) => {
   }
 };
 
-
 export const selectUserCheckoutAddress = (address) => {
-    // localStorage.setItem("CHECKOUT_ADDRESS", JSON.stringify(address));
-    
-    return {
-        type: "SELECT_CHECKOUT_ADDRESS",
-        payload: address,
-    }
+  // localStorage.setItem("CHECKOUT_ADDRESS", JSON.stringify(address));
+
+  return {
+    type: "SELECT_CHECKOUT_ADDRESS",
+    payload: address,
+  };
 };

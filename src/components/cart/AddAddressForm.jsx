@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaAddressCard } from "react-icons/fa";
 import InputField from "../shared/InputField";
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { addUpdateUserAddress } from "../../store/action";
 
-const AddAddressForm = ({address,setOpenAddressModal}) => {
+const AddAddressForm = ({ address, setOpenAddressModal }) => {
   const { btnLoader } = useSelector((state) => state.errors);
 
   const dispatch = useDispatch();
@@ -18,26 +18,34 @@ const AddAddressForm = ({address,setOpenAddressModal}) => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm({
     mode: "onTouched",
   });
 
   const onSaveAddressHandler = async (data) => {
-    dispatch(addUpdateUserAddress(
-      data,
-      toast,
-      address?.addressId,
-      setOpenAddressModal
-      
-    ))
+    dispatch(
+      addUpdateUserAddress(data, toast, address?.addressId, setOpenAddressModal)
+    );
   };
+
+  useEffect(() => {
+    if (address?.addressId) {
+      setValue("buildingName", address?.buildingName);
+      setValue("city", address?.city);
+      setValue("state", address?.state);
+      setValue("pincode", address?.pincode);
+      setValue("street", address?.street);
+      setValue("country", address?.country);
+    }
+  }, [address]);
   return (
     <div className="">
       <form onSubmit={handleSubmit(onSaveAddressHandler)} className="">
         <div className="flex justify-center items-center mb-4 font-semibold text-2xl text-slate-800 py-2 px-4">
           <FaAddressCard className="mr-2 text-2xl" />
           <h1 className="text-slate-800 text-center font-montserrat lg:text-3xl text-2xl font-bold">
-            Add Address
+            {!address?.addressId ? "Add Address" : "Update Address"}
           </h1>
         </div>
 
