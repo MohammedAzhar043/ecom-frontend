@@ -239,3 +239,12 @@ export const clearCheckoutAddress = () => {
     type: "REMOVE_CHECKOUT_ADDRESS",
   };
 };
+
+export const addPaymentMethod = (method) => {
+  // localStorage.setItem("CHECKOUT_ADDRESS", JSON.stringify(address));
+
+  return {
+    type: "ADD_PAYMENT_METHOD",
+    payload: method,
+  };
+};

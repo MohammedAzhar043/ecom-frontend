@@ -10,6 +10,7 @@ import {
 import toast from "react-hot-toast";
 import Skeleton from "../shared/Skeleton";
 import ErrorPage from "../shared/ErrorPage";
+import PaymentMethod from "./PaymentMethod";
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -22,7 +23,7 @@ const Checkout = () => {
     (state) => state.auth
   );
 
-  const paymentMethod = false;
+  const paymentMethod = true;
   const handleBack = () => {
     setActiveStep((prevStep) => prevStep - 1);
   };
@@ -59,6 +60,7 @@ const Checkout = () => {
       ) : (
         <div className="mt-5">
           {activeStep === 0 && <AddressInfo address={address} />}
+          {activeStep === 1 && <PaymentMethod />}
         </div>
       )}
 
