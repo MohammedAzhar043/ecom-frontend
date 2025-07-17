@@ -39,6 +39,14 @@ export const createReducer = (state = initialState, action) => {
         ),
       };
 
+    case "GET_USER_PRODUCTS":
+      return {
+        ...state,
+        cart: action.payload,
+        totalPrice: action.totalPrice,
+        cartId: action.cartId,
+      };
+
     default:
       return state;
   }
