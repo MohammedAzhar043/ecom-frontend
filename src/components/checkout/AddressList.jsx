@@ -10,11 +10,11 @@ import { MdLocationCity, MdPinDrop, MdPublic } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserCheckoutAddress } from "../../store/action";
 
-
 const AddressList = ({
   addresses,
   setSelectedAddress,
   setOpenAddressModal,
+  setOpenDeleteModal,
 }) => {
   const dispatch = useDispatch();
   const { selectedUserCheckoutAddress } = useSelector((state) => state.auth);
